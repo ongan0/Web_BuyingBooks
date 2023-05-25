@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Assignment.Models.Bill_Model>
+
+@{
+    ViewData["Title"] = "ShowBillForAdmin";
+    var listUser = ViewData["ListUser"] as List<User_Model>;
+}
+
+<h1>Hóa đơn</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Ngày tạo
+            </th>
+            <th>
+                Tài khoản
+            </th>
+            <th>
+                Họ tên
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Tổng thanh toán
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            var status = "";
+            if (item.Status == 0)
+            {
+                status = "Hủy đơn";
+            }
+            else if (item.Status == 1)
+            {
+                status = "Đã xác nhận";
+            }
+            else
+            {
+                status = "Đã hoàn thành";
+            }
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+                <td>
+                    @listUser.FirstOrDefault(x=>x.Id==item.UserId).UserName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Payment)
+			    </td>
+			    <td>
+				    @status
+			    </td>
+                <td>
+                    <a href="~/Admin/BillDetailForAdmin?id=@item.Id"><input type="submit" style="background-color:mediumpurple;width:80px;border:none;border-radius:5px;" value="Chi tiết"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

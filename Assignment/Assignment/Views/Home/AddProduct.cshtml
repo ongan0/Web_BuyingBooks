@@ -1,0 +1,131 @@
+﻿@model Assignment.Models.Product_Model
+
+@{
+    List<Category_Model> listCategory = ViewData["listCategory"] as List<Category_Model>;
+    int yearNow = DateTime.Now.Year;
+}
+@{
+    ViewData["Title"] = "AddProduct";
+}
+
+<h1>AddProduct</h1>
+
+<h4>Product_Model</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddProduct" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CateId" class="control-label"></label>
+                <select asp-for="CateId" class="form-control">
+                    @foreach (var item in listCategory)
+                    {
+                            <option value="@item.Id">@item.CategoryName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" min="1"/>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvailableQuantity" class="control-label"></label>
+                <input asp-for="AvailableQuantity" class="form-control" min="0"/>
+                <span asp-validation-for="AvailableQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LinkImg" class="control-label"></label>
+                <input asp-for="LinkImg" type="file" accept="img/*, .jpg, .png, .jpeg, .gif, .pdf, .heic, .svg, .tiff" id="fileInput" name="imageFile"/>
+                <span asp-validation-for="LinkImg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Supplier" class="control-label"></label>
+                <input asp-for="Supplier" class="form-control" />
+                <span asp-validation-for="Supplier" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Publisher" class="control-label"></label>
+                <input asp-for="Publisher" class="form-control" />
+                <span asp-validation-for="Publisher" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YearOfPublication" class="control-label"></label>
+                <input asp-for="YearOfPublication" class="form-control" min="1" max="@yearNow"/>
+                <span asp-validation-for="YearOfPublication" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Weight" class="control-label">Trọng lượng(g)</label>
+                <input asp-for="Weight" class="form-control" min="1"/>
+                <span asp-validation-for="Weight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Size" class="control-label"></label>
+                <input asp-for="Size" class="form-control" />
+                <span asp-validation-for="Size" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Page" class="control-label"></label>
+                <input asp-for="Page" class="form-control" min="1"/>
+                <span asp-validation-for="Page" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control">
+                    <option value="0">Đang kinh doanh</option>
+                    <option value="1">Chờ đăng bán</option>
+                    <option value="2">Ngừng kinh doanh</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4" style="margin-left:50px">
+        <img id="preview" width="300" height="400">
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
+
+<script>
+    const fileInput = document.getElementById('fileInput');
+    const preview = document.getElementById('preview');
+
+    fileInput.addEventListener('change', function() {
+    const file = this.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', function() {
+        preview.src = reader.result;
+    });
+
+    reader.readAsDataURL(file);
+    });
+</script>

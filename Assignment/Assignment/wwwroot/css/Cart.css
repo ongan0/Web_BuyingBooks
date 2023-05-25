@@ -1,0 +1,131 @@
+﻿.gioHang {
+margin-top: 30px;
+}
+
+.col-md-2 .col-md-8 {
+float: left;
+}
+
+.gio-sp {
+padding: 10px 200px;
+}
+
+.form-sp {
+margin-top: 10px;
+display: table;
+padding: 10px 10px;
+border: 5px solid #d0d0d0;
+width: 100%;
+}
+
+.form-sp img {
+    position: relative;
+    width: 75px;
+    height: 100px;
+    float: left;
+}
+
+.form-img {
+width: 100%;
+float: left;
+}
+
+.mota {
+float: left;
+height: 100px;
+margin-right: 0px;
+}
+
+.mota label {
+    font-size: 28px;
+}
+
+.mota strong {
+    float: left;
+    color: red;
+    font-size: 24px;
+    margin-right: 20px;
+}
+
+.mota span {
+    float: left;
+    text-decoration: line-through;
+    font-size: 20px;
+    color: #a7a7a7;
+}
+
+.mota p {
+    float: left;
+    width: 100px;
+    padding-left: 10px;
+    border-radius: 10px;
+    background-color: red;
+    color: rgb(255, 255, 255);
+    margin-left: 5px;
+}
+
+.sp-chucNang {
+float: left;
+}
+
+.sp-delete {
+float: right;
+background-color: var(--bs-body-bg);
+border: none;
+}
+
+.sp-soLuong {
+background-color: #d0d0d0;
+float: right;
+margin-top: 50px;
+position: relative;
+padding: 0 10px;
+border-radius: 10px;
+}
+
+.sp-soLuong input {
+    padding: 0%;
+    background-color: #d0d0d0;
+    margin-left: 10px;
+    margin-top: 7px;
+    float: left;
+    width: 40px;
+    height: 20px;
+    border: none;
+    color: black;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.sp-soLuong span {
+    float: left;
+}
+
+.form-TT {
+margin-top: 30px;
+float: right;
+margin-bottom: 100px;
+}
+
+.form-TT strong {
+    color: red;
+    font-size: larger;
+    float: right;
+}
+
+.form-TT button {
+    float: right;
+    padding: 5px 10px;
+    font-size: x-large;
+    border: none;
+    background-color: red;
+    color: white;
+}
+
+.continute {
+font-weight: 500;
+font-size: x-large;
+text-decoration: none;
+margin-top: 30px;
+float: left;
+}

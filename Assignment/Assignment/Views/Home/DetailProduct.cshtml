@@ -1,0 +1,114 @@
+﻿@model Assignment.Models.Product_Model
+
+@{
+    ViewData["Title"] = "DetailProduct";
+    var listCategory = ViewData["listCategory"] as List<Category_Model>;
+    var status = "";
+    if (Model.Status == 0)
+    {
+        status = "Đang kinh doanh";
+    }
+    else if (Model.Status == 1)
+    {
+        status = "Chờ đăng bán";
+    }
+    else
+    {
+        status = "Ngừng kinh doanh";
+    }
+}
+
+<h1>Chi tiết sản phẩm</h1>
+
+<div class="row">
+    <hr />
+    <div class="col-md-6">
+        <dl class="row">
+        <dt class = "col-sm-3">
+                Loại sản phẩm:
+        </dt>
+        <dd class = "col-sm-9">
+                @listCategory.FirstOrDefault(c=>c.Id==Model.CateId).CategoryName;
+        </dd>
+        <dt class = "col-sm-3">
+                Tên sách:
+        </dt>
+        <dd class = "col-sm-9">
+                @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-3">
+                Giá:
+        </dt>
+        <dd class = "col-sm-9">
+                @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-3">
+                Số luognwj tồn:
+        </dt>
+        <dd class = "col-sm-9">
+                @Html.DisplayFor(model => model.AvailableQuantity)
+        </dd>
+        <dt class = "col-sm-3">
+                Nhà cung cấp:
+        </dt>
+        <dd class = "col-sm-9">
+                @Html.DisplayFor(model => model.Supplier)
+        </dd>
+        <dt class = "col-sm-3">
+                Mô tả
+        </dt>
+        <dd class = "col-sm-9">
+                @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-3">
+                Tác giả:
+        </dt>
+        <dd class = "col-sm-9">
+                @Html.DisplayFor(model => model.Author)
+        </dd>
+        <dt class = "col-sm-3">
+                Nhà xuất bản
+        </dt>
+        <dd class = "col-sm-9">
+                @Html.DisplayFor(model => model.Publisher)
+        </dd>
+        <dt class = "col-sm-3">
+                Năm xuất bản:
+        </dt>
+        <dd class = "col-sm-9">
+                @Html.DisplayFor(model => model.YearOfPublication)
+        </dd>
+        <dt class = "col-sm-3">
+                Trọng lượng(g):
+        </dt>
+        <dd class = "col-sm-9">
+                @Html.DisplayFor(model => model.Weight)
+        </dd>
+        <dt class = "col-sm-3">
+                Kích thước:
+        </dt>
+        <dd class = "col-sm-9">
+                @Html.DisplayFor(model => model.Size)
+        </dd>
+        <dt class = "col-sm-3">
+                Số trang:
+        </dt>
+        <dd class = "col-sm-9">
+                @Html.DisplayFor(model => model.Page)
+        </dd>
+        <dt class = "col-sm-3">
+                Trạng thái
+        </dt>
+        <dd class = "col-sm-9">
+                @status
+        </dd>
+    </dl>
+    </div>
+    <div class="col-md-6">
+        <img src="~/img/@Model.LinkImg" alt="đang load ảnh" width="300" height="400">
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Edit", "UpdateProduct", new { id=Model.Id }) |
+    <a asp-action="Index">Back to List</a>
+</div>

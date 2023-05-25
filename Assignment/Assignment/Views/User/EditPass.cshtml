@@ -1,0 +1,61 @@
+﻿@model Assignment.Models.User_Model
+
+@{
+    var checkSpace = ViewData["CheckSpace"] as string;
+    var checkConfirm = ViewData["CheckConfirm"] as string;
+    var checkPass = ViewData["CheckPass"] as string;
+    var checkOldNew = ViewData["CheckOldNew"] as string;
+    ViewData["Title"] = "EditPass";
+}
+
+<center><h1>Đổi mật khẩu</h1></center>
+@if (TempData["AlertMessage"] != null)
+{
+    <div style="margin:auto;width:300px" id="AlertBox" class="alert alert-success hide" role="alert">
+                   <center>@TempData["AlertMessage"]</center>
+    </div>
+}
+@if (!String.IsNullOrEmpty(checkSpace) || !String.IsNullOrEmpty(checkOldNew) || !String.IsNullOrEmpty(checkPass) || !String.IsNullOrEmpty(checkConfirm))
+{
+    <div style="margin:auto;width:300px" id="AlertBox" class="alert alert-warning hide" role="alert">
+        <center>@checkSpace@checkConfirm@checkPass@checkOldNew</center>
+    </div>
+}
+<div class="row"  style="margin:auto">
+    <div class="col-md-4"  style="margin:auto">
+        <form asp-action="EditPass">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Mật khẩu cũ</label>
+                <input name="oldPassword" class="form-control" required/>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Mật khẩu mới</label>
+                <input class="form-control" name="newPassword" required/>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Nhập lại mật khẩu</label>
+                <input class="form-control" name="confirmPassword" required/>
+            </div>
+            <center>
+                <div class="form-group" style="margin:10px;">
+                    <input type="submit" value="Lưu" class="btn btn-primary" style="background-color:black; border:none;"/>
+                </div>
+            </center>
+        </form>
+    </div>
+</div>
+
+
+
+<script>
+    $(function () {           
+        $('#AlertBox').removeClass('hide');
+        $('#AlertBox').delay(2000).slideUp(500);
+    });
+
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Assignment.Models.Category_Model>
+
+@{
+    ViewData["Title"] = "ShowCategory";
+}
+
+<center><h1>Danh sách loại sản phẩm</h1></center>
+
+<p>
+    <a asp-action="CreateCategory">Thêm mới</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên loại sản phẩm
+            </th>
+            <th>
+                Chi tiết
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "UpdateCategory", new { id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

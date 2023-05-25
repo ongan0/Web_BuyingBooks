@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Assignment.Models.CartDetail_Model>
+
+@{
+    var listProduct = ViewData["ListProduct"] as List<Product_Model>;
+    var fullName = ViewData["FullName"] as string;
+    var createDate = ViewData["CreateDate"] as string;
+	ViewData["Title"] = "Pay";
+    long total = 0; 
+}
+<link rel="stylesheet" href="~/css/Cart.css" asp-append-version="true">
+<div class="container">
+    <div class="gioHang">
+        <center><h1>Thanh toán</h1></center>
+
+        <div class="row">
+            
+            <div class="gio-sp col-md-6" style="padding:10px 0px 10px 20px;">
+                @foreach (var item in Model)
+                {
+                    var product = listProduct.FirstOrDefault(x => x.Id == item.ProductId);
+                    var linkImg = product.LinkImg;
+                    var availableQuantity = product.AvailableQuantity;
+                    var name = product.Name;
+                    var price = product.Price * item.Quantity;
+                    total += price;
+
+                    <div class="form-sp row">
+                        <div class="col-md-3">
+                            <img src="~/img/@linkImg" alt="">
+                        </div>
+                        <div class="mota col-md-6">
+                            <label style="font-size:24px;">@name</label> <br>
+                                <strong  style="font-size:22px;">@price₫</strong>
+                        </div>
+                        <div class="sp-chucNang col-md-3">
+                            <div class="sp-soLuong">
+                                <label>Số lượng:</label>
+                                <input readonly type="number" value="@item.Quantity" min="1" max="@availableQuantity" onchange="changeNumber()" name="quantity" id="quantity">
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-md-6" style="float:left;">
+                @if (TempData["AlertMessage"] != null)
+                {
+                    <div style="margin:auto;max-width:420px" id="AlertBox" class="alert @TempData["Type"] hide" role="alert">
+                            <center>@TempData["AlertMessage"]</center>
+                    </div>
+                }
+                <form method="post">
+                    <div class="form-group">
+                        <label class="control-label">Họ tên</label>
+                        <input class="form-control" value="@fullName" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Ngày tạo</label>
+                        <input class="form-control" value="@createDate" readonly/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Số điện thoại</label>
+                        <input class="form-control" type="text"  title="Nhập số điện thoại 10 chữ số" name="telNumber" required/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Địa chỉ</label>
+                        <input type="text" class="form-control" maxlength="1000" name="address" required/>
+                    </div>
+
+                    <div class="form-TT">
+                        <h5>Tổng tiền:</h5>
+                        <strong>@total₫</strong> <br>
+                        <button>
+                            Thanh toán
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<script>
+    //document.getElementById("quantity").addEventListener("change", changeNumber(let quantity, let maxQuantity));
+    //function changeNumber(quantity,maxQuantity){
+    //    //let quantity = document.getElementById("quantity").value;
+    //    //let maxQuantity = quantity.max;
+    //    alert(maxQuantity,quantity);
+    //    if(quantity<=0){
+    //        document.getElementById("quantity").value = 1;
+    //    }
+    //    else if(quantity>maxQuantity){
+    //        document.getElementById("quantity").value = maxQuantity;
+    //    }
+    //}
+
+     $(function () {           
+        $('#AlertBox').removeClass('hide');
+        $('#AlertBox').delay(2000).slideUp(500);
+    });
+
+</script>

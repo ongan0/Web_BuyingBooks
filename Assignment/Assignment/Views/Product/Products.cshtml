@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Assignment.Models.Product_Model>
+
+@{
+    
+    List<Category_Model> categories = ViewData["ListCategories"] as List<Category_Model>;
+    ViewData["Title"] = "Products";
+}
+<link rel="stylesheet" href="~/css/products.css" asp-append-version="true" />
+<div class="section row">
+    <div class="sec-category-menu col-sm-3 col-lg-3 col-md-3">
+        <nav class="navbar navbar-dark sec-category-down">
+            <div>
+                    <span class="navbar-toggler-icon"></span>
+                    <label>Loại sản phẩm</label>
+            </div>
+        </nav>
+        <div>
+            <div class="sec-category-menu-div">
+                <ul>
+                    @foreach(var item in categories)
+                    {
+                        <li>@Html.ActionLink(item.CategoryName, "Products", new{categoryId=item.Id} )</li>
+                        <hr>
+                    }
+                        <li>@Html.ActionLink("Tất cả", "Products", new{categoryId="00000000-0000-0000-0000-000000000001"} )</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9" style="padding-left:10px;padding-right:55px;">
+        <img src="https://cdn0.fahasa.com/media/wysiwyg/Thang-04-2023/McBooksT4_Mainbanner_web.jpg" width="100%" height="100%">
+    </div>
+    <div class="sec-sp">
+          <div class="matHang row" >
+                @foreach (var pro in Model)
+                {
+                    <div class="sp col-md-3" >
+                        <div class="sp-form">
+                            <a href="~/Product/ShowDetailProduct?id=@pro.Id" style="text-decoration:none">
+                                <img src="~/img/@pro.LinkImg">
+                                <div class="mota">
+                                    <label>@pro.Name</label>
+                                    <strong>@pro.Price đ</strong> 
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+    </div>
+  
+</div>

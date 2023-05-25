@@ -1,0 +1,126 @@
+﻿@model Assignment.Models.Product_Model
+
+@{
+    int quantityCanAdd = 0;
+    if (ViewData["QuantityCanAdd"]!=null)
+    {
+        quantityCanAdd = (int)ViewData["QuantityCanAdd"];
+    }
+    else
+    {
+        quantityCanAdd = Model.AvailableQuantity;
+    }
+    ViewData["Title"] = "ShowDetailProduct";
+}
+<link rel="stylesheet" href="~/css/ShowDetailProduct.css" asp-append-version="true" />
+<div class="container">
+    <div id="notification" style="display:none;">Thông báo của bạn</div>
+    <div class="sp-detail">
+        <div class="col-md-6">
+            <div class="sp-img">
+                <center><img src="~/img/@Model.LinkImg" alt="đang load ảnh"></center>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="sp-thongTin">
+                @using (Html.BeginForm("AddToCart", "Product", new{id = Model.Id} ))
+                {
+                    <h2>@Model.Name</h2> 
+                    <h4>Trạng thái: <span>@(Model.AvailableQuantity>0 ? "Còn hàng": "Hết hàng")</span></h4>
+                    <h5>Tác giả: @Model.Author</h5>
+                    <h5>Số lượng: @Model.AvailableQuantity</h5>
+                    <div class="sp-gia">
+                        <strong>@Model.Price đ</strong>
+                    </div>
+                    <div class="sp-form-sl">
+                        <label for="#" style="float: left;">Số lượng</label>
+                        <div class="sp-soLuong">
+                            @if(quantityCanAdd==0){
+                                <input readonly type="number" value="0" min="0" max="@Model.AvailableQuantity" onchange="changeNumber()" name="quantity" id="quantity">
+                                <span>Số lượng sản phẩm trong giỏ của bạn đã đạt tối đa</span>
+                            }else
+                            {
+                                        <input type="number" value="1" min="1" max="@quantityCanAdd" onchange="changeNumber()" name="quantity" id="quantity" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                                <span id="inputNumber"></span>
+                            }
+                        </div>
+                    </div>
+                    <div class="sp-btn">
+                            @*<a class="aa-add-to-cart-btn" href="~/Product/AddToCart?id=@Model.Id">Thêm vào giỏi hàng</a>*@
+                        <div class="col-md-6">
+                            <button style="background-color: red;" name="btn">MUA NGAY</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button style="background-color: rgb(43, 100, 255);" id="btnAddToCart" name="AddToCart">THÊM VÀO GIỎ HÀNG</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="sp-chiTiet" style="margin-bottom: 50px;">
+            <h5>Mô tả sản phẩm</h5>
+            <p><strong>Thông tin sản phẩm:</strong>
+                <br>
+                Tác giả: @Model.Author<br>
+                Nhà Cung Cấp: @Model.Supplier <br>
+                NXB: @Model.Publisher <br>
+                Năm XB: @Model.YearOfPublication <br>
+                Trọng lượng (gr): @Model.Weight <br>
+                Kích thước bao bì: @Model.Size <br>
+                Số trang: @Model.Page
+                <hr>
+                <strong>Mô tả:</strong> <br>
+                @Model.Description
+            </p>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/1.1.9/js/libs/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    document.getElementById("quantity").addEventListener("change", changeNumber);
+    function changeNumber(){
+        let quantity = document.getElementById("quantity").value;
+        if(quantity<=0){
+            document.getElementById("quantity").value = 1;
+        }
+        else if(quantity>@quantityCanAdd){
+            document.getElementById("quantity").value = @quantityCanAdd;
+        }
+    }
+    //========================
+    //$(document).ready(function(){
+    //    $("#btnAddToCart").click(function(){
+    //        AddToCart();
+    //    });
+    //});
+    //function AddToCart(){
+    //    var id = @Model.Id;
+    //    console.log("#1");
+    //    var quantity = $("#quantity").val();
+    //    $.ajax({
+    //        async: true,
+    //        type: 'POST',
+    //        dataType: JSON,
+    //        contentType :'application/json; charset=utf-8',
+    //        data: JSON.stringify(id,quantity),
+    //        url:'/Product/AddToCart',
+    //        success:function(response){
+    //            if(response.success === true){
+    //                toastr.success(response.message,"Success Alert",{timeOut:3000});
+    //            }
+    //            else{
+    //                toastr.success(response.message,"Information Alert",{timeOut:3000});
+    //            }
+    //        },
+    //        Error:function(){
+    //            toastr.error("Có vấn đề nào đó khi bạn thêm vào giỏ hàng","Error Alert",{timeOut:3000});
+    //        }
+    //    })
+    //}
+    ////=====================
+    //function TestAlert(){
+    //    alert("Thông báo");
+    //}
+
+</script>

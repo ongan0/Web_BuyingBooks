@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Assignment</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hnf.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    @*<link rel="stylesheet" href="~/Assignment.styles.css" asp-append-version="true" />*@
+</head>
+
+    @*List<Category_Model> categorys = ViewData["Category"] as List<Category_Model>;*@
+
+<body>
+    @*<header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Assignment</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ShowProducts">Show danh sách sản phẩm</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>*@
+    <nav class="nav1 con">
+    <div class="nav1-left">
+        <ul>
+            <li>
+                <a href="~/User/DangNhap" class="nav1-text"
+                    style="border-right: 1px solid #989990; padding-right: 15px; margin-right: 15px;">Hệ thống
+                    Showroom</a>
+            </li>
+            <li>
+                <a href="#" class="nav1-text">Mua hàng: <span style="color: red;"><b>0931733469</b></span></a>
+            </li>
+        </ul>
+    </div>
+    <div class="nav1-right">
+        <ul>
+            <li>
+                <a href="~/User/Login"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                    </svg></a>
+                <a href="~/User/Login" class="nav1-text"
+                    style="border-right: 1px solid #989990; padding-right: 15px; margin-right: 15px;">
+                    Tài khoản
+                </a>
+            </li>
+            <li>
+                <a href="~/Cart/Cart" class="nav1-text">Giỏ hàng</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<nav class="navbar navbar-expand-lg bg-body-tertiary backgrNav2" style="padding:0px;width: 100%;">
+    <div class="container-fluid backgrNav2">
+        <a asp-action="Index"><img src="https://bucket.nhanh.vn/store/2071/store_1607570776_234.png" alt=""
+                class="img-logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" asp-controller="Admin" asp-action="Index">QUẢN LÝ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" asp-controller="Home" asp-action="ShowProducts">TỔNG HỢP SẢN PHẨM</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" asp-controller="Product" asp-action="Products">SẢN PHẨM</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" asp-controller="Home" asp-action="Index">GIỚI THIỆU</a>
+                </li>
+            </ul>
+            
+            @using (Html.BeginForm("Products","Product",FormMethod.Get)){
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" name="name" placeholder="Tìm sản phẩm" aria-label="Search" >
+                    <input type="submit" class="btnSearch">
+                </form>
+            }
+        </div>
+    </div>
+</nav>
+<br>
+<br>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+
+<footer>
+  <div class="lienHe">
+    <div class="col-md-3">
+      <div class="mua">
+        <center><strong>GỌI MUA HÀNG ( 08:30-21:30 )</strong></center>
+        <img src="https://voip24h.vn/wp-content/uploads/2019/03/phone-png-mb-phone-icon-256.png" alt=""
+          style="width: 80px; margin-left: 10px">
+        <a href="#">098765432</a>
+        <center><label for="">Tất cả các ngày trong tuần</label></center>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="mua">
+        <center><strong>GÓP Ý, KHIẾU NẠI ( 08:30-21:30 )</strong></center>
+        <img src="https://voip24h.vn/wp-content/uploads/2019/03/phone-png-mb-phone-icon-256.png" alt=""
+          style="width: 80px; margin-left: 10px">
+        <a href="#">098765432</a>
+        <center><label for="">Các ngày trong tuần ( trừ ngày lễ)</label></center>
+      </div>
+    </div>
+    <div class="gmail col-md-6">
+      <label for="">ĐĂNG KÍ NHẬN THÔNG TIN MỚI</label> <br>
+      <input class="form-control me-2" type="email" placeholder="Nhập email tại đây...">
+      <button>Đăng ký</button>
+    </div>
+  </div>
+
+
+  <div class="footer2">
+    <div class="col1 col-md-3">
+      <h4>HỘ KINH DOANH TORANO</h4>
+      <p>Mã số thuế: 01M8017618</p>
+      <p>Điện thoại: 0904636356.</p>
+      <p>Email: cskh@torano.vn</p>
+      <p>Địa chỉ: số 1165 Giải Phóng, phường Thịnh Liệt, quận Hoàng Mai, Thành phố Hà Nội.</p>
+    </div>
+
+    <div class="col2-3 col-md-3">
+      <h4>HỖ TRỢ KHÁCH HÀNG</h4>
+      <ul>
+        <li>
+          <a href="#">Hướng dẫn chọn size</a>
+        </li>
+        <li>
+          <a href="#">Chính sách khách hàng thân thiết</a>
+        </li>
+        <li>
+          <a href="#">Chính sách đổi hàng</a>
+        </li>
+        <li>
+          <a href="#">Chính sách bảo mật</a>
+        </li>
+        <li>
+          <a href="#">Thanh toán, Giao nhận</a>
+        </li>
+        <li>
+          <a href="#">Câu hỏi thường gặp</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col2-3 col-md-3">
+      <h4>VỀ CHÚNG TÔI</h4>
+      <ul>
+        <li>
+          <a href="gioiThieu.html">Giới thiệu</a>
+        </li>
+        <li>
+          <a href="#">Liên hệ</a>
+        </li>
+        <li>
+          <a href="#">Tìm đại lí</a>
+        </li>
+        <li>
+          <a href="#">Tuyển dụng</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col4 col-md-3">
+      <h4>FANPAGE CỦA CHÚNG TÔI</h4>
+      <div class="fb-page" data-href="https://www.facebook.com/profile.php?id=100070144715524" data-tabs="timeline"
+        data-width="" data-height="300" data-small-header="true" data-adapt-container-width="true"
+        data-hide-cover="true" data-show-facepile="true">
+        <blockquote cite="https://www.facebook.com/profile.php?id=100070144715524" class="fb-xfbml-parse-ignore"><a
+            href="https://www.facebook.com/profile.php?id=100070144715524">BSA - Liên Chi Hội Công Nghiệp</a>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v15.0"
+  nonce="qjBmGkzP"></script>
+
+    @*<footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Assignment - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
+    
+    @*@await Component.InvokeAsync("Notyf")*@
+    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Styles", required: false)
+</body>
+</html>

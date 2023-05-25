@@ -1,0 +1,83 @@
+﻿@model Assignment.Models.Bill_Model
+
+@{
+    var client = ViewData["Client"] as User_Model;
+    var listBillDetail = ViewData["ListBillDetail"] as List<BillDetail_Model>;
+    var listProduct = ViewData["ListProduct"] as List<Product_Model>;
+    ViewData["Title"] = "BillDetailForAdmin";
+}
+
+<center><h1>Hóa đơn chi tiết</h1></center>
+<hr />
+@if (TempData["AlertMessage"] != null)
+{
+    <div style="margin:auto;max-width:420px" id="AlertBox" class="alert @TempData["Type"] hide" role="alert">
+            <center>@TempData["AlertMessage"]</center>
+    </div>
+}
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="BillDetailForAdmin" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" style="display:none">
+                <input asp-for="Id">
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateDate" class="control-label">Ngày tạo: @Model.CreateDate</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label">Tên tài khoản: @client.UserName</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label">Họ tên: @Model.FullName</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label">Địa chỉ: @Model.Address</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label">SĐT: @Model.PhoneNumber</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Payment" class="control-label">Tổng thanh toán: @Model.Payment</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label">Trạng thái</label>
+                <select asp-for="Status" class="form-control">
+                    <option value="0">Hủy đơn</option>
+                    <option value="1">Xác nhận</option>
+                    <option value="2">Hoàn thành</option>
+                </select>
+            </div>
+            <div class="form-group" style="margin-top:10px;">
+                <input type="submit" value="Lưu" class="btn btn-primary" style="background-color:black; border:none;"/>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>đơn giá</th>
+                    <th>Tổng tiền từng mặt hàng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in listBillDetail)
+                {
+                    var pro = listProduct.FirstOrDefault(x => x.Id == item.ProductId);
+                    long quantity = item.Quantity;
+                    <tr>
+                        <td>@pro.Name</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Price</td>
+                        <td>@(quantity*item.Price)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

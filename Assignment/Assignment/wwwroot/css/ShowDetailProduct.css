@@ -1,0 +1,164 @@
+﻿.sp-detail {
+margin: 30px 0px;
+}
+
+.sp-img {
+width: 100%;
+}
+
+.sp-img img {
+    width: 400px;
+    height:600px;
+}
+
+.slide-img {
+height: 50px;
+text-align: center;
+}
+
+.slide-img ul {
+    padding-left: 0%;
+}
+
+.slide-img li {
+    display: inline;
+    padding: 0 5px;
+}
+
+.slide-img img {
+    border-radius: 100%;
+    width: 30px;
+}
+
+.sp-thongTin {
+margin-left: 100px;
+}
+
+.sp-gia {
+margin-bottom: 20px;
+}
+
+.sp-gia strong {
+    color: red;
+    font-size: 25px;
+    margin-right: 20px;
+}
+
+.sp-gia span {
+    text-decoration: line-through;
+    font-size: 20px;
+    color: #a7a7a7;
+}
+
+.sp-gia label {
+    color: rgb(232, 27, 27);
+    font-size: larger;
+    margin-left: 50px;
+}
+
+.sp-mau label {
+font-size: 20px;
+margin-right: 3px;
+}
+
+.sp-mau-img {
+height: 100px;
+}
+
+.sp-mau-img ul {
+    padding-left: 0%;
+}
+
+.sp-mau-img li {
+    display: inline;
+    padding: 0 5px;
+}
+
+.sp-mau-img img {
+    border-radius: 100%;
+    width: 30px;
+}
+
+.sp-size {
+margin-bottom: 20px;
+}
+
+.sp-size label {
+    font-size: 20px;
+}
+
+.list-KT {
+width: 100%;
+display: flex;
+}
+
+.list-KT div {
+    text-align: center;
+    width: 35px;
+    height: 30px;
+    border: 1px solid;
+    margin-right: 10px;
+}
+
+.list-KT span {
+    font-weight: 600;
+}
+
+.sp-btn {
+float: left;
+width: 100%;
+}
+
+.sp-btn button {
+    width: 85%;
+    margin: 0 20px;
+    height: 50px;
+    border: none;
+    color: white;
+    font-weight: 700;
+}
+
+.sp-form-sl {
+float: left;
+width: 100%;
+margin-bottom: 20px;
+}
+
+.sp-soLuong {
+background-color: #d0d0d0;
+float: left;
+padding: 0 10px;
+border-radius: 10px;
+}
+
+.sp-soLuong input {
+    padding: 0%;
+    background-color: #d0d0d0;
+    margin-left: 10px;
+    margin-top: 7px;
+    float: left;
+    width: 40px;
+    height: 20px;
+    border: none;
+    color: black;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.sp-soLuong span {
+    float: left;
+}
+
+.sp-form-sl label {
+font-size: 20px;
+width: 100%;
+}
+
+.sp-chiTiet {
+padding-top: 20px;
+padding-left: 20px;
+border: 1px solid #d0d0d0;
+float: left;
+width: 100%;
+margin-top: 30px;
+}
